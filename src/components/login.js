@@ -40,8 +40,8 @@ function login(navigateTo) {
   signUpLink.classList.add('sign-up');
 
   const forgotPasswordLink = document.createElement('a');
-  forgotPasswordLink.textContent = '¿olvidasete tu contraseña?';
-  forgotPasswordLink.setAttribute('href', '/recuperar-contraseña');// poner url
+  forgotPasswordLink.textContent = '¿Olvidaste tu contraseña?';
+  forgotPasswordLink.setAttribute('href', '/recover');// poner url
   forgotPasswordLink.classList.add('forgot-password');
 
   // crear boton de inicio de sesion

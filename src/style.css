@@ -49,6 +49,8 @@ li{
     display: flex;
     justify-content: center;
     margin-top: 1rem;
+    align-items: center;
+    
 }
 
 input{
@@ -56,13 +58,15 @@ input{
     border-top: none;
     border-left: none;
     border-right: none;
-    margin-bottom: 1rem; /* Espacio entre el input y el botón */
+    margin:2%;
 }
 
 #register {
-    list-style-type: none;
-    padding-inline-start: 0%;
+    list-style-type:none;
+    padding-inline-start:0%;
+   
 }
+
 
 button{
     display:flex;
@@ -72,6 +76,7 @@ button{
     background: linear-gradient(#5CB3C1, #01587A);
     color:#F8F9F9;
     padding: 0.5rem; 
+    margin-bottom: 1%;
     
 }
 
@@ -134,153 +139,42 @@ font-size: large;
 
 
 .forgot-password{
-    font-size: small; 
-    margin-right: 90px
-  
+    font-size: .6rem;
+    margin-left: 10%;
 
 }
 
 .sign-up{
-    font-size: small;
-    margin:60px
+    font-size: .6rem;
+    margin-right: 10%;
+    
+   
 }
 
 .login-button{
   
-  margin: 0 auto; /* Centrar horizontalmente el botón en su contenedor */
+  margin: 0 auto; /* Centrar horizontalmente el botón en su contenedor*/ 
   margin-top: 1rem;
-  margin-bottom: 40px; 
+  margin-bottom: 40px;
+  
 } 
 
 .buttonsShowHidePassword{
-  border: 0px;
-  width: 24px;
-  height: 24px;
-  
+    border: 0px;
+    width: 24px;
+    height: 24px;
+    display:inline-flexbox; 
+    margin-left: 83%;
+    top:0%
+
 }
 
  #logo-google{
     padding-inline: 1rem;
     margin-bottom: 80px; 
  }
-/*Generales*/
 
-*{
-    font-family: 'Kiwi Maru', serif;
-}
-
-body{
-    background: linear-gradient(#5CB3C1, #01587A);
-}
-
-main{
-    background-color: #F8F9F9;
-    border-radius: 5%;
-    min-height: 600px;
-    margin: 2rem;
-    display: flex;
-    justify-content: center;
-}
-
-h2{
-    text-align: center;
-    color: #01587A;
-    font-size: medium;
-}
-
-#root{
-    display:flex;
-    justify-content: center;
-    align-content: center;
-}
-
-/*De las pantallas de login, inscripcion, etc*/
-/*inscripción*/
-
-#logo{
-    width: 70%;
-    display: flex;
-    justify-content: center;
-    margin-top: 17%;
-    margin-left: 14%;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-}
-
-li{
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-}
-
-input{
-    width: 75%;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-}
-
-#register {
-    list-style-type: none;
-    padding-inline-start: 0%;
-}
-
-button{
-    display:flex;
-    text-align: center;
-    border-radius: 15%;
-    margin-top: 1rem;
-    background: linear-gradient(#5CB3C1, #01587A);
-    color:#F8F9F9;
-    padding: 0.5rem; 
-}
-
-/* boton mostrar/esconder contraseña */
-.buttonsShowHidePassword{
-    border: 0px;
-    width: 24px;
-    height: 24px;
-    margin-left: auto;
-}
-
-/*preferences*/
-
-#logo2{
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    margin-top: 10%;
-    margin-left: 30%;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-}
-
-#pref{
-    padding-right: 1rem;
-    padding-left: 1rem;
-    padding-top: -1 rem;
-    display: flex;
-    flex-direction: column;
-    margin-top: 0rem;
-}
-.ask{
-    background:#e1e8ec;
-    color:#01587A;
-    text-align: center;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    border-radius:10%;
+ .iniciar-sesion-con-google{
     font-size: smaller;
-    display: flex;
-    flex-direction: row;
-    border:none;
-    width: 100%;
-}
 
-.ask:hover{
-    background-color: #5CB3C1;
-}
-
-.options {
-    padding-left: 1rem;
-}
+ }

@@ -49,21 +49,30 @@ function login(navigateTo) {
   loginButton.textContent = 'Iniciar Sesión';
   loginButton.classList.add('login-button');
 
-  // evento a boton de login
-  loginButton.addEventListener('click', async () => {
+  function autenticacionUser(email, password) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const Auth = getAuth(firebaseApp);
+        await signInWithEmailAndPassword(Auth, email, password);
+        resolve('Inicio de sesion exitoso');
+      } catch (error) {
+        reject(`Error al iniciar sesion:${error.message}`);
+      }
+    });
+  }
+
+  loginButton.addEventListener('click', () => {
     const email = emailInput.value;
     const password = passwordInput.value;
 
-    try {
-      const Auth = getAuth(firebaseApp);
-      await signInWithEmailAndPassword(Auth, email, password);
-      window.location.href = '/preferences';
-      // poner que la autenticacion fue existosa
-      console.log('Inicio de sesion exitoso');
-    } catch (error) {
-      // poner errores de inicio de sesion
-      console.log('Error al iniciar sesion', error);
-    }
+    autenticacionUser(email, password)
+      .then((successMessage) => {
+        window.location.href = '/preferences';
+        console.log(successMessage);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   });
 
   const btnShowPass = document.createElement('button');
@@ -92,22 +101,24 @@ function login(navigateTo) {
   const googleSignInLink = document.createElement('a');
   googleSignInLink.textContent = 'Iniciar Sesión con Google';
   googleSignInLink.setAttribute('href', '/auth/google'); // poner url
+  googleSignInLink.classList = 'iniciar-sesion-con-google';
 
   googleSignInOption.appendChild(googleSignInLink);
 
   googleSignInLink.addEventListener('click', async (e) => {
     e.preventDefault(); // evita que el enlace cambie de pagina (usamos "#" como href)
-    try {
-      const auth = getAuth(firebaseApp);
-      const provider = new GoogleAuthProvider();
 
-      // Inicia sesion con Google utilizando SignInWithPopup
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      console.log('Inicio de sesion con Google exitoso:', user);
-    } catch (error) {
-      console.error('Error al iniciar sesion con Google:', error);
-    }
+    const auth = getAuth(firebaseApp);
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        console.log('Inicio de sesion con Google exitoso:', user);
+      })
+      .catch((error) => {
+        console.error('Error al iniciar sesion con Google:', error);
+      });
   });
 
   // poner todos los elmentos en el section

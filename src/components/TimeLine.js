@@ -1,4 +1,4 @@
-function home(navigateTo) {
+function TimeLine(navigateTo) {
   const section = document.createElement('section');
   const title = document.createElement('h2');
   title.textContent = 'Welcome to my social network';
@@ -6,4 +6,4 @@ function home(navigateTo) {
   return section;
 }
 
-export default home;
+export default TimeLine;

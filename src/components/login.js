@@ -47,7 +47,9 @@ function login(navigateTo) {
   // crear boton de inicio de sesion
   const loginButton = document.createElement('button');
   loginButton.textContent = 'Iniciar Sesión';
+  loginButton.setAttribute('id', 'loginButton');
   loginButton.classList.add('login-button');
+  loginButton.setAttribute('disabled', true);
 
   function autenticacionUser(email, password) {
     return new Promise(async (resolve, reject) => {
@@ -56,10 +58,19 @@ function login(navigateTo) {
         await signInWithEmailAndPassword(Auth, email, password);
         resolve('Inicio de sesion exitoso');
       } catch (error) {
-        reject(`Error al iniciar sesion:${error.message}`);
+        reject(`Error al iniciar sesion: ${error.message}`);
       }
     });
   }
+
+  function verificarCampos() {
+    const email = emailInput.value;
+    const password = passwordInput.value;
+    const botonHabilitado = email.length > 0 && password.length > 0;
+    loginButton.disabled = !botonHabilitado;
+  }
+  emailInput.addEventListener('input', verificarCampos);
+  passwordInput.addEventListener('input', verificarCampos);
 
   loginButton.addEventListener('click', () => {
     const email = emailInput.value;
@@ -67,11 +78,15 @@ function login(navigateTo) {
 
     autenticacionUser(email, password)
       .then((successMessage) => {
-        window.location.href = '/preferences';
+        window.location.href = '/TimeLine';
         console.log(successMessage);
       })
       .catch((error) => {
-        console.log(error);
+        if (error.code === 'auth/user-not-found') {
+          alert('El correo electronico ingresado no esta registrado.');
+        } else {
+          console.log(error);
+        }
       });
   });
 

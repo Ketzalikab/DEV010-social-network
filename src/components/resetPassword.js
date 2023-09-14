@@ -6,6 +6,7 @@ const auth = getAuth(firebaseApp);
 function resetPassword() {
   const logo = document.createElement('img');
   logo.setAttribute('src', 'assets/logo256.png');
+  logo.setAttribute('class', 'logoRecover');
 
   const section = document.createElement('section');
   const title = document.createElement('h2');
@@ -29,6 +30,7 @@ function resetPassword() {
   const btnNewPass = document.createElement('button');
   btnNewPass.setAttribute('id', 'btnNewPassword');
   btnNewPass.textContent = 'Reiniciar contraseña';
+  btnNewPass.setAttribute('class', 'buttonRecover');
 
   btnShowPass.addEventListener('click', () => {
     if (newPass.type === 'password' || confirmPass.type === 'password') {

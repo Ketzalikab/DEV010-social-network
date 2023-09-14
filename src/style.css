@@ -6,14 +6,13 @@
 
 body{
     background: linear-gradient(#5CB3C1, #01587A);
-
-  
+    min-height: auto;
 }
 
+
 main{
-    background-color: #F8F9F9;
-    border-radius: 5%;
-    min-height: 600px;
+    background-color: #fefefe;
+    border-radius: 20px;
     margin: 2rem;
     display: flex;
     justify-content: center;
@@ -36,11 +35,11 @@ h2{
 /*inscripción*/
 
 #logo{
-    width: 70%;
+    width: 55%;
     display: flex;
     justify-content: center;
-    margin-top: 17%;
-    margin-left: 14%;
+    margin-top: 1rem;
+    margin-left: 22%;
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
@@ -48,7 +47,7 @@ h2{
 li{
     display: flex;
     justify-content: center;
-    margin-top: 1rem;
+    margin-top: 0rem;
     align-items: center;
     
 }
@@ -58,7 +57,11 @@ input{
     border-top: none;
     border-left: none;
     border-right: none;
+    font-size: small;
     margin:2%;
+    background-color:#fefefe;
+    border-color: #01587A;
+    color:#01587A;
 }
 
 #register {
@@ -71,13 +74,22 @@ input{
 button{
     display:flex;
     text-align: center;
-    border-radius: 15%;
+    border-radius: 15px;
     margin-top: 1rem;
+    margin-bottom: 2rem;
     background: linear-gradient(#5CB3C1, #01587A);
-    color:#F8F9F9;
+    color:#fefefe;
     padding: 0.5rem; 
-    margin-bottom: 1%;
-    
+    border-color: #0587ba;    
+}
+
+button:active{
+    background: linear-gradient(#f2dfa2,#f3ba00);
+    border-color: #ffc400; 
+    color:#fefefe;
+    padding: 0.5rem; 
+    margin-bottom: 1%; 
+    transform: translateY(2px) translateX(2px);
 }
 
 /*preferences*/
@@ -95,26 +107,36 @@ button{
 #pref{
     padding-right: 1rem;
     padding-left: 1rem;
-    padding-top: -1 rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
     display: flex;
     flex-direction: column;
-    margin-top: 0rem;
+    margin-top: 1rem;
+}
+
+.liPref{
+    margin-top: -2rem;
 }
 .ask{
     background:#e1e8ec;
     color:#01587A;
     text-align: center;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    border-radius:10%;
+    padding:1rem;
+    border-radius:29px;
     font-size: smaller;
     display: flex;
     flex-direction: row;
-    border:none;
+    border-style: solid;
+    border-color: #aac3cd;
     width: 100%;
 }
 .ask:hover{
+    background-color: #83bac2;
+}
+
+button.ask:active{
     background-color: #5CB3C1;
+    transform: translateY(2px) translateX(2px);
 }
 
 .options {
@@ -139,23 +161,24 @@ font-size: large;
 
 
 .forgot-password{
-    font-size: .6rem;
-    margin-left: 10%;
+    font-size: small;
+    margin-left: 6%;
+    margin-bottom: 2rem;
 
 }
 
 .sign-up{
-    font-size: .6rem;
-    margin-right: 10%;
-    
+    font-size: small;
+    margin-right: 6%;
+    margin-bottom: 2rem;
    
 }
 
 .login-button{
   
   margin: 0 auto; /* Centrar horizontalmente el botón en su contenedor*/ 
-  margin-top: 1rem;
-  margin-bottom: 40px;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   
 } 
 
@@ -163,18 +186,100 @@ font-size: large;
     border: 0px;
     width: 24px;
     height: 24px;
-    display:inline-flexbox; 
-    margin-left: 83%;
-    top:0%
-
+    margin-top:-35px;
+    margin-left: 80%;
+    top:0;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 1%;
 }
 
  #logo-google{
     padding-inline: 1rem;
-    margin-bottom: 80px; 
+    margin-bottom: 2rem; 
  }
 
  .iniciar-sesion-con-google{
     font-size: smaller;
+}
 
- }
+.eye{
+    border:none;
+    margin-top: -2px;
+    margin-bottom: 2px;
+    width: 24px;
+    height: 24px;
+    margin-left: -21px;
+    position: relative;
+    z-index: 2;
+    background-image: url(./assets/openEye.png);
+}
+
+.eye:active{
+    background-image: url(./assets/shutEye.png);
+}
+
+#btnSendEmail{
+    margin-top: 2rem;
+    margin-left: 29%;
+    margin-bottom: 2rem;
+}
+
+.buttonRecover{
+    margin-top: 3rem;
+    margin-left: 23%;
+    margin-bottom: 3rem;
+}
+
+.logoRecover{
+    width: 56%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    margin-left: 20%;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+}
+
+#imgError{
+    width: 50%;
+    padding:20%;
+}
+
+h3{
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    color:#01587A;
+}
+
+/*Cambios Responsive */
+
+@media screen and (max-width: 360px) {
+
+    body{
+    min-height: 600px;
+    }
+
+    .forgot-password{
+        font-size: x-small;
+    }
+    
+    .sign-up{
+        font-size: x-small;
+        margin-right: 2%;
+    }
+
+    .buttonsShowHidePassword{
+        margin-top:-31px;
+        margin-left: 77%;
+    }
+
+    .icon {
+        margin-top:4px;
+    }
+
+    .ask{
+       font-size: x-small;
+    }
+}
+

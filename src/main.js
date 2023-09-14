@@ -1,4 +1,4 @@
-import home from './components/home.js';
+/* import home from './components/home.js'; */
 import login from './components/login.js';
 import error from './components/error.js';
 import recover from './components/recover.js';
@@ -9,8 +9,7 @@ import preferences from './components/preferences.js';
 const root = document.getElementById('root');
 
 const routes = [
-  { path: '/', component: home },
-  { path: '/login', component: login },
+  { path: '/', component: login },
   { path: '/error', component: error },
   { path: '/recover', component: recover },
   { path: '/resetPassword', component: reset },

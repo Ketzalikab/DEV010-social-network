@@ -5,7 +5,8 @@ const auth = getAuth(firebaseApp);
 
 function recover() {
   const logo = document.createElement('img');
-  logo.setAttribute('src', 'assets/logo256.png');
+  logo.setAttribute('src', './assets/logo256.png');
+  logo.setAttribute('class', 'logoRecover');
 
   const section = document.createElement('section');
   const title = document.createElement('h2');
@@ -15,25 +16,32 @@ function recover() {
   const emailRecover = document.createElement('input');
   emailRecover.setAttribute('id', 'emailRecover');
   emailRecover.setAttribute('type', 'email');
-  emailRecover.setAttribute('placeholder', 'Correo electronico');
+  emailRecover.setAttribute('placeholder', 'Correo electrónico');
 
   const btnSendEmail = document.createElement('button');
   btnSendEmail.setAttribute('id', 'btnSendEmail');
   btnSendEmail.textContent = 'Enviar correo';
 
+  const showAlert = document.createElement('span');
+  showAlert.setAttribute('id', 'showAlert');
+
   // evento del boton enviar correo
-  btnSendEmail.addEventListener('click', async () => {
+  btnSendEmail.addEventListener('click', () => {
     const email = emailRecover.value;
-    try {
-      await sendPasswordResetEmail(auth, email);
-      console.log('Se ha enviado el correo para restaurar contraseña');
-    } catch (error) {
-      console.log('Correo electrónico no encontrado');
-    }
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        showAlert.innerHTML = 'Correo electrónico enviado, por favor revisa tu correo para cambiar tu contraseña';
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 5000);
+      })
+      .catch(() => {
+        showAlert.innerHTML = 'Correo electrónico no encontrado';
+      });
   });
 
   // Mostrar los elementos creados
-  section.append(logo, title, emailRecover, btnSendEmail);
+  section.append(logo, title, emailRecover, btnSendEmail, showAlert);
   return section;
 }
 

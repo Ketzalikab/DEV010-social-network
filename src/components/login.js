@@ -78,7 +78,7 @@ function login(navigateTo) {
 
     autenticacionUser(email, password)
       .then((successMessage) => {
-        window.location.href = '/TimeLine';
+        window.location.href = '/timeLine';
         console.log(successMessage);
       })
       .catch((error) => {

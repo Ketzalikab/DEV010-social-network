@@ -1,5 +1,4 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from './firebase.js';
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 
 function newUser(navigateTo) {
   const newUserForm = document.createElement('section');
@@ -68,21 +67,28 @@ function newUser(navigateTo) {
     /* console.log(userData);
     console.log(userEmail);
     console.log(userPassword); */
-
+    const auth = getAuth();
     createUserWithEmailAndPassword(auth, userEmail, userPassword)
       .then((userCredential) => {
       // Signed in
         const user = userCredential.user;
-      // ...
+        sendEmailVerification(user);
+        alert('Te enviamos un correo');
+        window.location.href = '/preferences';
       })
+
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-      // ..
+        if (errorCode === 'auth/email-already-in-use') {
+          alert('Este correo ya está en uso');
+        } else {
+          alert(errorMessage);
+        }
       });
 
+    // enviar correo de confirmación
     registerForm.reset();
-    window.location.href = '/preferences';
   });
 
   return newUserForm;

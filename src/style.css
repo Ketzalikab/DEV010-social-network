@@ -312,10 +312,58 @@ h3{
 
 }
 
-.editButton, .deleteButton{
-display: inline-block;
-margin-right: 10px;
-}
+/* Estilo para los botones del selector */
+select {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 60px;
+    size: 5;
+    overflow-y: scroll;
+    z-index: 1000;
+  }
+  
+  /* Estilo para el contenedor de comentarios */
+  .commentContainer {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    min-height: 100px;
+  }
+  
+  /* Estilo para el área de comentario */
+  .commentTextarea {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    resize: none;
+    overflow-y: auto;
+  }
+  
+  /* Estilo para el contenedor de botones */
+  .commentButtons {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .action-link {
+    background: none;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #007bff; /* Color de enlace típico, puedes personalizarlo */
+  }
+  
+  .action-link:hover {
+    text-decoration: none; /* Evita que el subrayado se muestre al pasar el mouse */
+    color: #0056b3; /* Cambia el color al pasar el mouse, si lo deseas */
+  }
+
 /*Cambios Responsive */
 
 @media screen and (max-width: 360px) {

@@ -46,48 +46,62 @@ function TimeLine(navigateTo) {
       const commentContainer = document.createElement('li');
       commentContainer.setAttribute('class', 'commentContainer');
 
-      const commentDiv = document.createElement('div');
-      commentDiv.textContent = commentText;
-      commentDiv.setAttribute('class', 'commentTextarea');
+      const commentTextarea = document.createElement('textarea');
+      commentTextarea.value = commentText;
+      commentTextarea.setAttribute('class', 'commentTextarea');
+      commentTextarea.setAttribute('id', 'commentTextarea');
+      commentTextarea.setAttribute('readonly', 'true');
 
-      /* const commentTextDiv = document.createElement('div');
-      commentTextDiv.textContent = commentText; */
-
-      const editButton = document.createElement('button');
-      editButton.textContent = 'Editar';
-      editButton.setAttribute('class', 'editButton');
-      editButton.addEventListener('click', () => {
-        if (!isEditing) {
-          commentDiv.setAttribute('contenteditable', 'true');
-          commentDiv.focus();
-          editButton.textContent = 'Enviar';
-          isEditing = true;
-        } else {
-          commentDiv.setAttribute('contenteditable', 'false');
-          editButton.textContent = 'Editar';
-          isEditing = false;
+      commentTextarea.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          if (isEditing) {
+            this.style.height = 'auto';
+            this.style.height = `${this.scrollHeight}px`;
+          } else {
+            this.value = commentText;
+          }
         }
-
-        /* commentInput.value = commentText;
-        commentContainer.remove(); */
       });
 
-      const deleteButton = document.createElement('button');
-      deleteButton.textContent = 'Borrar';
-      deleteButton.setAttribute('class', 'deleteButton');
-      deleteButton.addEventListener('click', () => {
-        const shouldDelete = window.confirm('¿Estás seguro de que deseae borrar este comentario?');
+      const editLink = document.createElement('a');
+      editLink.textContent = 'Editar';
+      editLink.classList.add('action-link');
+      editLink.addEventListener('click', () => {
+        isEditing = true;
+        commentTextarea.removeAttribute('readonly');
+        commentTextarea.focus();
+      });
+
+      const deleteLink = document.createElement('a');
+      deleteLink.textContent = 'Borrar';
+      deleteLink.classList.add('action-link');
+      deleteLink.addEventListener('click', () => {
+        const shouldDelete = window.confirm('¿Estás seguro de que deseas borrar este comentario?');
         if (shouldDelete) {
           commentContainer.remove();
         }
       });
-      const commentButonsDiv = document.createElement('div');
-      commentButonsDiv.setAttribute('class', 'commentButtons');
-      commentButonsDiv.appendChild(editButton);
-      commentButonsDiv.appendChild(deleteButton);
 
-      commentContainer.appendChild(commentDiv);
-      commentContainer.appendChild(commentButonsDiv);
+      editLink.addEventListener('click', () => {
+        isEditing = true;
+        commentTextarea.removeAttribute('readonly');
+        commentTextarea.focus();
+      });
+
+      deleteLink.addEventListener('click', () => {
+        const shouldDelete = window.confirm('¿Estás seguro de que deseas borrar este comentario?');
+        if (shouldDelete) {
+          commentContainer.remove();
+        }
+      });
+      const commentButtonsDiv = document.createElement('div');
+      commentButtonsDiv.setAttribute('class', 'commentButtons');
+      commentButtonsDiv.appendChild(editLink);
+      commentButtonsDiv.appendChild(deleteLink);
+
+      commentContainer.appendChild(commentTextarea);
+      commentContainer.appendChild(commentButtonsDiv);
       commentList.appendChild(commentContainer);
 
       commentList.classList.add('visible');

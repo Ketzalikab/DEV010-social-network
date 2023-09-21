@@ -287,15 +287,15 @@ h3{
 }
 
 #commentInput, #commentList {
-    width: 80%;
+    width: 95%; /* Aqui tenemos que moverle para ajustar el margen cuando pongamos la imagen del Usuario*/
     border-radius: 10px; 
-    margin: 10%;
+    /*margin: 10%;*/
     resize: none; 
     font-size: 14px; 
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
    padding: 10px;
     border: none;
-    margin-bottom: 3px;
+    margin-bottom: 10px;
 
 }
 
@@ -311,19 +311,7 @@ h3{
    display: none;
 
 }
-
-/* Estilo para los botones del selector */
-select {
-    padding: 5px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 60px;
-    size: 5;
-    overflow-y: scroll;
-    z-index: 1000;
-  }
-  
+ 
   /* Estilo para el contenedor de comentarios */
   .commentContainer {
     margin: 10px 0;
@@ -332,36 +320,45 @@ select {
     border-radius: 5px;
     background-color: #f9f9f9;
     min-height: 100px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap:none;
   }
   
   /* Estilo para el área de comentario */
   .commentTextarea {
-    margin-bottom: 10px;
+    margin: 0 auto;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 100%;
+    width: 95%;
     resize: none;
     overflow-y: auto;
   }
   
   /* Estilo para el contenedor de botones */
-  .commentButtons {
+  .commentButtonsDiv {
     display: flex;
     justify-content: flex-end;
+    
   }
 
   .action-link {
     background: none;
     border: none;
-    text-decoration: underline;
+    text-decoration: none;
     cursor: pointer;
-    color: #007bff; /* Color de enlace típico, puedes personalizarlo */
+    color: #99d8dd; 
+    transition: transform 0.2s;
+    margin-right: 8px
   }
   
   .action-link:hover {
-    text-decoration: none; /* Evita que el subrayado se muestre al pasar el mouse */
-    color: #0056b3; /* Cambia el color al pasar el mouse, si lo deseas */
+    text-decoration: none; 
+    color: #99d8dd; 
+    transform: scale(1.1); 
   }
 
 /*Cambios Responsive */

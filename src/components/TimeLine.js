@@ -56,10 +56,9 @@ function TimeLine(navigateTo) {
         if (e.key === 'Enter' && !e.shiftKey) {
           e.preventDefault();
           if (isEditing) {
-            this.style.height = 'auto';
-            this.style.height = `${this.scrollHeight}px`;
-          } else {
-            this.value = commentText;
+            isEditing = false;
+            commentTextarea.setAttribute('readonly', 'true');
+            commentTextarea.blur();
           }
         }
       });

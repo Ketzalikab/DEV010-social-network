@@ -93,5 +93,4 @@ function newUser(navigateTo) {
 
   return newUserForm;
 }
-
 export default newUser;

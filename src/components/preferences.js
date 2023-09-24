@@ -1,4 +1,4 @@
-export function preferences(navigateTo) {
+function preferences(navigateTo) {
   const prefer = document.createElement('section');
 
   prefer.innerHTML = `<img src=""></img>
@@ -31,7 +31,7 @@ export function preferences(navigateTo) {
       const userTypeValue = e.target.value;
       console.log(userTypeValue);
     }
-    //window.location.href = '/tl';
+    // window.location.href = '/tl';
   });
   return prefer;
 }

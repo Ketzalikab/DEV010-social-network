@@ -311,6 +311,19 @@ h3{
    display: none;
 
 }
+
+
+#btnLike{
+    width: 16px;
+    height: 16px;
+}
+
+.liking{
+    display: inline;
+    /* align-items: flex-start;*/
+    /* margin-right: 110px;*/ 
+}
+
  
   /* Estilo para el contenedor de comentarios */
   .commentContainer {
@@ -342,7 +355,6 @@ h3{
   .commentButtonsDiv {
     display: flex;
     justify-content: flex-end;
-    
   }
 
   .action-link {

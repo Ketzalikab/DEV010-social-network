@@ -16,6 +16,7 @@
     "stylelint": "stylelint --aei src/**/*.css",
     "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
     "test": "jest --env=jsdom --coverage",
+    "testing": "jest --wacht",
     "dev": "vite dev src",
     "start": "npm run dev",
     "build": "vite build",
@@ -28,7 +29,7 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^25.3.0",
     "htmlhint": "^1.0.0",
-    "jest": "^27.0.1",
+    "jest": "^27.5.1",
     "regenerator-runtime": "^0.13.1",
     "stylelint": "^14.1.0",
     "stylelint-config-recommended": "^6.0.0",
@@ -43,6 +44,8 @@
     "commit": "3cf716dfe2a8c328a7e9dce5c030cb2c3ab8531c"
   },
   "dependencies": {
-    "firebase": "^10.3.1"
+    "firebase": "^10.3.1",
+    "firebase-admin": "^11.10.1"
+    "@playwright/test": "^1.38.1",
   }
 }

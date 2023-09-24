@@ -1,4 +1,14 @@
+import { getAuth } from 'firebase/auth';
 import firebaseApp from './firebase';
+import { getFirestore } from 'firebase/firestore';
+import { onAuthStateChanged } from '@firebase/auth';
+
+const auth = getAuth(firebaseApp);
+/* const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
+const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore'); */
+
+// initializeApp();
+const fs = getFirestore();
 
 function TimeLine(navigateTo) {
   const section = document.createElement('section');
@@ -39,18 +49,61 @@ function TimeLine(navigateTo) {
   commentList.setAttribute('id', 'commentList');
 
   let isEditing = false;
+  let isLiking = false;
+  let likes = 0;
 
+  const commentContainer = document.createElement('li');
+  commentContainer.setAttribute('class', 'commentContainer');
+
+  const commentText = commentInput.value;
+  const commentTextarea = document.createElement('textarea');
+  commentTextarea.value = commentText;
+  commentTextarea.setAttribute('class', 'commentTextarea');
+  commentTextarea.setAttribute('id', 'commentTextarea');
+  commentTextarea.setAttribute('readonly', 'true');
+  const editLink = document.createElement('a');
+  const deleteLink = document.createElement('a');
+  const btnLike = document.createElement('img');
+  btnLike.setAttribute('id', 'btnLike');
+  btnLike.setAttribute('src', './assets/unlike.png');
+  const sumLikes = document.createElement('span');
+  sumLikes.setAttribute('id', 'sumLikes');
+  sumLikes.innerHTML = likes;
+  const likeContainer = document.createElement('div');
+  likeContainer.setAttribute('class', 'liking');
+  const commentButtonsDiv = document.createElement('div');
+  commentButtonsDiv.setAttribute('class', 'commentButtons');
+
+  // cargar posts
+  document.querySelector('commenTextarea');
+
+  // Eventos
+  // autenticacion
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      console.log('sign in');
+      fs.collection('posts')
+        .get()
+        .then((snapshot) => {
+          console.log(snapshot.docs);
+        });
+    } else {
+      console.log('sign out');
+    }
+  });
+
+  // cliks
   sendButton.addEventListener('click', () => {
-    const commentText = commentInput.value;
+    // const commentText = commentInput.value;
     if (commentText.trim() !== '') {
-      const commentContainer = document.createElement('li');
+      /* const commentContainer = document.createElement('li');
       commentContainer.setAttribute('class', 'commentContainer');
 
       const commentTextarea = document.createElement('textarea');
       commentTextarea.value = commentText;
       commentTextarea.setAttribute('class', 'commentTextarea');
       commentTextarea.setAttribute('id', 'commentTextarea');
-      commentTextarea.setAttribute('readonly', 'true');
+      commentTextarea.setAttribute('readonly', 'true'); */
 
       commentTextarea.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
@@ -63,7 +116,7 @@ function TimeLine(navigateTo) {
         }
       });
 
-      const editLink = document.createElement('a');
+      // const editLink = document.createElement('a');
       editLink.textContent = 'Editar';
       editLink.classList.add('action-link');
       editLink.addEventListener('click', () => {
@@ -72,7 +125,7 @@ function TimeLine(navigateTo) {
         commentTextarea.focus();
       });
 
-      const deleteLink = document.createElement('a');
+      // const deleteLink = document.createElement('a');
       deleteLink.textContent = 'Borrar';
       deleteLink.classList.add('action-link');
       deleteLink.addEventListener('click', () => {
@@ -82,6 +135,14 @@ function TimeLine(navigateTo) {
         }
       });
 
+      /* const btnLike = document.createElement('img');
+      btnLike.setAttribute('id', 'btnLike');
+      btnLike.setAttribute('src', './assets/unlike.png');
+
+      const sumLikes = document.createElement('span');
+      sumLikes.setAttribute('id', 'sumLikes');
+      sumLikes.innerHTML = likes; */
+
       editLink.addEventListener('click', () => {
         isEditing = true;
         commentTextarea.removeAttribute('readonly');
@@ -94,13 +155,33 @@ function TimeLine(navigateTo) {
           commentContainer.remove();
         }
       });
-      const commentButtonsDiv = document.createElement('div');
-      commentButtonsDiv.setAttribute('class', 'commentButtons');
+
+      btnLike.addEventListener('click', () => {
+        if (isLiking) {
+          btnLike.setAttribute('src', './assets/unLike.png');
+          likes -= 1;
+          isLiking = false;
+        } else {
+          btnLike.setAttribute('src', './assets/like.png');
+          likes += 1;
+          isLiking = true;
+        }
+        sumLikes.innerHTML = likes;
+      });
+
+      /* const likeContainer = document.createElement('div');
+      likeContainer.setAttribute('class', 'liking'); */
+      likeContainer.appendChild(btnLike);
+      likeContainer.appendChild(sumLikes);
+
+      /* const commentButtonsDiv = document.createElement('div');
+      commentButtonsDiv.setAttribute('class', 'commentButtons'); */
       commentButtonsDiv.appendChild(editLink);
       commentButtonsDiv.appendChild(deleteLink);
 
-      commentContainer.appendChild(commentTextarea);
       commentContainer.appendChild(commentButtonsDiv);
+      commentContainer.appendChild(commentTextarea);
+      commentContainer.appendChild(likeContainer);
       commentList.appendChild(commentContainer);
 
       commentList.classList.add('visible');

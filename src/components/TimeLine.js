@@ -1,7 +1,7 @@
 import { getAuth } from 'firebase/auth';
-import firebaseApp from './firebase';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, collection } from 'firebase/firestore';
 import { onAuthStateChanged } from '@firebase/auth';
+import { firebaseApp } from './firebase';
 
 const auth = getAuth(firebaseApp);
 /* const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
@@ -10,7 +10,7 @@ const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/
 // initializeApp();
 const fs = getFirestore();
 
-function TimeLine(navigateTo) {
+function TimeLine() {
   const section = document.createElement('section');
   section.setAttribute('id', 'sectionTimeLine');
   section.setAttribute('class', 'timeLineStyle');
@@ -74,8 +74,33 @@ function TimeLine(navigateTo) {
   const commentButtonsDiv = document.createElement('div');
   commentButtonsDiv.setAttribute('class', 'commentButtons');
 
+  const userContainer = document.createElement('div');
+  userContainer.setAttribute('class', 'user-container');
+
+  const selectedImage = localStorage.getItem('selectedImage');
+  if (selectedImage) {
+    const userImage = document.createElement('img');
+    userImage.setAttribute('id', 'userImage');
+    userImage.setAttribute('class', 'user-image');
+    userImage.setAttribute('src', selectedImage);
+    console.log('Imagen del usuario establecida correctamente:', selectedImage);
+    userContainer.appendChild(userImage); // Agregar userImage al userContainer
+  } else {
+    console.log('No se encontró una imagen de usuario en el localStorage.');
+  }
+
+  const selectedUserName = localStorage.getItem('selectedUserName');
+  if (selectedUserName) {
+    const userNameElement = document.createElement('p');
+    userNameElement.textContent = selectedUserName;
+    userNameElement.setAttribute('class', 'user-name');
+    userContainer.appendChild(userNameElement); // Agregar userNameElement al userContainer
+  } else {
+    console.log('No se encontró un nombre de usuario en el localStorage.');
+  }
+
   // cargar posts
-  document.querySelector('commenTextarea');
+  document.querySelector('#commenTextarea');
 
   // Eventos
   // autenticacion
@@ -189,7 +214,7 @@ function TimeLine(navigateTo) {
       commentInput.value = '';
     }
   });
-
+  sectionPosts.appendChild(userContainer);
   sectionPosts.appendChild(commentInput);
   sectionPosts.appendChild(sendButton);
   sectionPosts.appendChild(commentList);

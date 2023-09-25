@@ -2,7 +2,7 @@ import {
   getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword,
 } from 'firebase/auth';
 
-import firebaseApp from './firebase.js';
+import { firebaseApp } from './firebase';
 
 function login(navigateTo) {
   const logo = document.createElement('img');
@@ -52,17 +52,17 @@ function login(navigateTo) {
   loginButton.setAttribute('disabled', true);
 
   function autenticacionUser(email, password) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const Auth = getAuth(firebaseApp);
-        await signInWithEmailAndPassword(Auth, email, password);
-        resolve('Inicio de sesion exitoso');
-      } catch (error) {
-        reject(`Error al iniciar sesion: ${error.message}`);
-      }
+    return new Promise((resolve, reject) => {
+      const Auth = getAuth(firebaseApp);
+      signInWithEmailAndPassword(Auth, email, password)
+        .then(() => {
+          resolve('Inicio de sesion exitoso');
+        })
+        .catch((error) => {
+          reject(`Error al iniciar sesion: ${error.message}`);
+        });
     });
   }
-
   function verificarCampos() {
     const email = emailInput.value;
     const password = passwordInput.value;
@@ -130,6 +130,7 @@ function login(navigateTo) {
       .then((result) => {
         const user = result.user;
         console.log('Inicio de sesion con Google exitoso:', user);
+        window.location.href = './timeLine';
       })
       .catch((error) => {
         console.error('Error al iniciar sesion con Google:', error);

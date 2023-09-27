@@ -44,8 +44,10 @@
     "commit": "3cf716dfe2a8c328a7e9dce5c030cb2c3ab8531c"
   },
   "dependencies": {
+    "@firebase/firestore": "^4.2.0",
+    "@playwright/test": "^1.38.1",
     "firebase": "^10.3.1",
     "firebase-admin": "^11.10.1",
-    "@playwright/test": "^1.38.1"
+    "s": "^1.0.0"
   }
 }

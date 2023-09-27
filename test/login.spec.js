@@ -1,7 +1,7 @@
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'; // Importa la función que quieres probar
 import { async } from 'regenerator-runtime';
 import { expect } from '@playwright/test';
-import { autenticacionUser } from './login.js';
+import { autenticacionUser } from '../src/components/login.js';
 
 // Creamos un mock para getAuth
 jest.mock('firebase/auth', () => ({

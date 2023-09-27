@@ -87,9 +87,6 @@ button:active{
     background: linear-gradient(#f2dfa2,#f3ba00);
     border-color: #ffc400; 
     color:#fefefe;
-    padding: 0.5rem; 
-    margin-bottom: 1%; 
-    transform: translateY(2px) translateX(2px);
 }
 
 /*preferences*/
@@ -112,6 +109,7 @@ button:active{
     display: flex;
     flex-direction: column;
     margin-top: 1rem;
+    margin-bottom: 0rem;
 }
 
 .liPref{
@@ -151,6 +149,11 @@ button.ask:active{
     height:40px;
 }
 
+#savePreferences{
+    justify-content: center;
+    display:initial;
+    margin-top:-1rem;
+}
 
 /*Login*/
 
@@ -252,6 +255,7 @@ h3{
     color:#01587A;
 }
 
+/*TimeLine*/
 .timeLineStyle{
     background-color: #99d8dd;
     min-height: 600px;
@@ -284,6 +288,25 @@ h3{
     flex-direction: column;
     align-items: flex-end;
     padding: 20px;
+}
+
+.user-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-right: 90%;
+
+}
+.user-image{
+   width: 2rem;
+   height: 2rem;
+   margin-right:0.8rem;
+   margin-top: 7px;
+}
+
+.user-name{
+    color: #01587A;
+    font-size: medium;
 }
 
 #commentInput, #commentList {
@@ -409,6 +432,10 @@ h3{
         height: 10%; 
         margin: 5px;
         margin-bottom: 122px;
+    }
+
+    .user-container{
+        margin-right: 60%;
     }
 
     #btnClose{

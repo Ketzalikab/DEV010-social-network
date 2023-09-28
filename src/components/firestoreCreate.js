@@ -1,7 +1,23 @@
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { db } from './firebase.js';
 
-const createPost = (userID, icon, posts) => {
+// mandar post a DB (userID, icon, idLikes, post, time)
+const createPost = (userID, icon, idLikes, post) => {
+  const postRef = doc(db, 'posts', 'posts1a');
+
+  updateDoc(postRef, {
+    autor: arrayUnion(userID),
+    icono: arrayUnion(icon),
+    likes: arrayUnion(idLikes),
+    post: arrayUnion(post),
+  })
+    .then(() => {
+      console.log('Post creado');
+    })
+    .catch((error) => console.log(error));
+};
+
+/* const createPost = (userID, icon, posts) => {
   const postRef = doc(db, 'postPrueba', 'posts1b');
 
   updateDoc(postRef, {
@@ -14,6 +30,6 @@ const createPost = (userID, icon, posts) => {
       console.log('Post creado');
     })
     .catch((error) => console.log(error));
-};
+}; */
 
 export default createPost;

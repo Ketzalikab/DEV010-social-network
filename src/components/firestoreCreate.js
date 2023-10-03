@@ -3,13 +3,14 @@ import { db } from './firebase.js';
 
 // mandar post a DB (userID, icon, idLikes, post, time)
 const createPost = (userID, icon, idLikes, post) => {
-  const postRef = doc(db, 'posts', 'posts1a');
+  const postRef = doc(db, 'postNuevo', 'postNv');
+  const arrayPost = [userID, icon, idLikes, post];
 
   updateDoc(postRef, {
-    autor: arrayUnion(userID),
-    icono: arrayUnion(icon),
-    likes: arrayUnion(idLikes),
-    post: arrayUnion(post),
+    // posts: arrayUnion({ arrayPost }),
+    posts: arrayUnion({
+      userID, icon, idLikes, post,
+    }),
   })
     .then(() => {
       console.log('Post creado');

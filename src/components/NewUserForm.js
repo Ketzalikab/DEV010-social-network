@@ -1,6 +1,6 @@
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 
-function newUser(navigateTo) {
+function newUser() {
   const newUserForm = document.createElement('section');
 
   newUserForm.innerHTML = `<img id="logo" src= "img/logo.png">
@@ -41,7 +41,7 @@ function newUser(navigateTo) {
   registerForm.addEventListener('submit', (event) => {
     event.preventDefault(); // Para que el formulario no se envíe automáticamente.
 
-    const name = document.getElementById('name').value;
+    // const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const repeatPass = document.getElementById('repeatPass').value;
@@ -58,15 +58,7 @@ function newUser(navigateTo) {
 
     const userEmail = email;
     const userPassword = password;
-    const userData = {
-      name,
-      email,
-      password,
-    };
 
-    /* console.log(userData);
-    console.log(userEmail);
-    console.log(userPassword); */
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, userEmail, userPassword)
       .then((userCredential) => {

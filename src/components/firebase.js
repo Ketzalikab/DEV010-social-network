@@ -28,6 +28,7 @@ const firebaseConfig = {
 // Initialize Firebase
 // En esta variable esta guardada la app de Firebase.
 const firebaseApp = initializeApp(firebaseConfig);
-export const db = getFirestore(firebaseApp);
+const db = getFirestore(firebaseApp);
 export default firebaseApp;
+export { db };
 // En esta variable le instalo el auth a la app.

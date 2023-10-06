@@ -5,7 +5,7 @@ import recover from './components/recover.js';
 import reset from './components/resetPassword.js';
 import newUser from './components/NewUserForm.js';
 import preferences from './components/preferences.js';
-import timeLine from './components/timeLine.js';
+import timeLine from './components/TimeLine.js';
 
 const root = document.getElementById('root');
 

@@ -41,11 +41,11 @@ function preferences() {
       const imageURL = e.target.getAttribute('data-image');
       localStorage.setItem('selectedImage', imageURL);
       userImage.setAttribute('src', imageURL);
-      console.log('imageURL:', imageURL);
+      // console.log('imageURL:', imageURL);
 
       const userName = document.getElementById('userName').value;
       localStorage.setItem('selectedUserName', userName);
-      console.log('selectedUserName:', userName);
+      // console.log('selectedUserName:', userName);
     }
   });
 
@@ -56,7 +56,7 @@ function preferences() {
   savePreferencesButton.addEventListener('click', () => {
     if (!selectedUserType) {
       alert('Selecciona un tipo de usuario antes de continuar.');
-      return Promise.reject('Tipo de usuario no selccionado');
+      return Promise.reject(new Error('Tipo de usuario no selccionado'));
     }
 
     // obtienes el nombre de tu usuario
@@ -65,7 +65,7 @@ function preferences() {
     // verificar si hay nombre
     if (userName === '') {
       alert('Ingresa tu nombre antes de continuar.');
-      return Promise.reject('Nombre de usuario no ingresado');
+      return Promise.reject(new Error('Nombre de usuario no ingresado'));
     }
     localStorage.setItem('selectedUserName', userName);
     const user = getAuth().currentUser;
@@ -83,14 +83,14 @@ function preferences() {
 
       return setDoc(doc(usuariosCollection, userId), nuevoUsuario)
         .then(() => {
-          console.log('Preferencias guardadas correctamente.');
+          // console.log('Preferencias guardadas correctamente.');
           window.location.href = './timeLine';
         })
         .catch((error) => {
-          console.log.error('Error al guardar preferencias:', error);
+          // console.log.error('Error al guardar preferencias:', error);
         });
     }
-    return Promise.reject('Usuario no autenticado');
+    return Promise.reject(new Error('Usuario no autenticado'));
   });
 
   return prefer;

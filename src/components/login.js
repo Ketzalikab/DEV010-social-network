@@ -4,7 +4,7 @@ import {
 
 import firebaseApp from './firebase.js';
 
-function login(navigateTo) {
+function login() {
   const logo = document.createElement('img');
   logo.setAttribute('src', '/assets/Colective_isCool!_(1).png');
   logo.setAttribute('alt', 'Colective_isCool');
@@ -79,13 +79,13 @@ function login(navigateTo) {
     autenticacionUser(email, password)
       .then((successMessage) => {
         window.location.href = '/timeLine';
-        console.log(successMessage);
+        // console.log(successMessage);
       })
       .catch((error) => {
         if (error.code === 'auth/user-not-found') {
           alert('El correo electronico ingresado no esta registrado.');
         } else {
-          console.log(error);
+          // console.log(error);
         }
       });
   });
@@ -112,15 +112,14 @@ function login(navigateTo) {
   });
 
   // creamos opcion para inicar sesion con google
-  const googleSignInOption = document.createElement('p');
-  const googleSignInLink = document.createElement('a');
-  googleSignInLink.textContent = 'Iniciar Sesión con Google';
-  googleSignInLink.setAttribute('href', '/auth/google'); // poner url
-  googleSignInLink.classList = 'iniciar-sesion-con-google';
-
+  const googleSignInOption = document.createElement('div');
+  const googleSignInLink = document.createElement('img');
+  googleSignInLink.setAttribute('id', 'googleSignInLink');
+  googleSignInLink.setAttribute('src', '/assets/btn_google_signin_dark_normal_web@2x.png'); // poner url
+  googleSignInLink.setAttribute('alt', 'Google Sign-In');
   googleSignInOption.appendChild(googleSignInLink);
 
-  googleSignInLink.addEventListener('click', async (e) => {
+  googleSignInLink.addEventListener('click', (e) => {
     e.preventDefault(); // evita que el enlace cambie de pagina (usamos "#" como href)
 
     const auth = getAuth(firebaseApp);
@@ -148,7 +147,6 @@ function login(navigateTo) {
     forgotPasswordLink,
     loginButton,
     googleSignInOption,
-    logoGoogle,
   );
   return section;
 }

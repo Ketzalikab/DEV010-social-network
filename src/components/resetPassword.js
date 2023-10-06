@@ -1,7 +1,6 @@
 import { getAuth, updatePassword } from 'firebase/auth';
 import firebaseApp from './firebase.js';
 
-
 const auth = getAuth(firebaseApp);
 
 function resetPassword() {

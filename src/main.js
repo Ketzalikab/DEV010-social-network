@@ -2,7 +2,6 @@
 import login from './components/login.js';
 import error from './components/error.js';
 import recover from './components/recover.js';
-import reset from './components/resetPassword.js';
 import newUser from './components/NewUserForm.js';
 import preferences from './components/preferences.js';
 import timeLine from './components/TimeLine.js';
@@ -13,7 +12,6 @@ const routes = [
   { path: '/', component: login },
   { path: '/error', component: error },
   { path: '/recover', component: recover },
-  { path: '/resetPassword', component: reset },
   { path: '/newUser', component: newUser },
   { path: '/preferences', component: preferences },
   { path: '/timeLine', component: timeLine },

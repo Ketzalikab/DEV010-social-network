@@ -105,12 +105,12 @@ describe('eliminarPost', () => {
     // Limpia el mock después de la prueba
     consoleErrorSpy.mockRestore();
   });
-  // Spy se utiliza para espiar (o "espionar") sobre métodos o funciones existentes. 
-  // La idea principal es rastrear y observar el comportamiento de una función durante las 
+  // Spy se utiliza para espiar (o "espionar") sobre métodos o funciones existentes.
+  // La idea principal es rastrear y observar el comportamiento de una función durante las
   // pruebas sin cambiar su implementación real.
-  // spyOn: La función jest.spyOn se utiliza para crear un espía en un objeto existente y 
-  // rastrear las llamadas a un método específico en ese objeto. 
-  // Puedes usar esto en combinación con otras funciones Jest, como expect, 
+  // spyOn: La función jest.spyOn se utiliza para crear un espía en un objeto existente y
+  // rastrear las llamadas a un método específico en ese objeto.
+  // Puedes usar esto en combinación con otras funciones Jest, como expect,
   // para realizar afirmaciones sobre cómo se usa esa función en tus pruebas.
 
   it('debería manejar caso donde deleteDoc lanza una excepción no manejada', async () => {

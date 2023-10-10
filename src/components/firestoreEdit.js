@@ -6,6 +6,7 @@ function editPost(docID, newPost) {
   updateDoc(postRef, {
     post: newPost,
   });
+  return 'Post editado';
 }
 
 export default editPost;

@@ -3,6 +3,8 @@ import firebaseApp from './firebase.js';
 import postCreate from './postCreate.js';
 import getPost from './firestoreRecover.js';
 import savePost from './db.js';
+import logo256 from '../assets/logo256.png';
+import logoClose from '../assets/close.png';
 
 getAuth(firebaseApp);
 function TimeLine() {
@@ -12,13 +14,13 @@ function TimeLine() {
   const logoTimeLine = document.createElement('img');
   logoTimeLine.setAttribute('id', 'logoTimeLine');
   logoTimeLine.setAttribute('class', 'timeLineLogo');
-  logoTimeLine.setAttribute('src', './assets/logo256.png');
+  logoTimeLine.setAttribute('src', logo256);
   logoTimeLine.addEventListener('click', () => {
     window.location.reload();
   });
   const btnClose = document.createElement('img');
   btnClose.setAttribute('id', 'btnClose');
-  btnClose.setAttribute('src', './assets/close.png');
+  btnClose.setAttribute('src', logoClose);
   btnClose.addEventListener('click', () => {
     window.location.href = './';
   });
@@ -64,9 +66,8 @@ function TimeLine() {
     savePost(selectedUserName, selectedImage, commentText);
     const likes = 0;
     const postLi = postCreate(selectedImage, selectedUserName, likes, commentText);
-    commentList.prepend(postLi);
+    commentList.prepend(postLi); // USO DE PREPEND PARA PONERLO AL INICIO DE LA LISTA
     commentInput.value = '';
-    // commentList.appendChild(postLi);
   });
 
   window.addEventListener('DOMContentLoaded', () => {

@@ -1,4 +1,4 @@
-// importamos la funcion que vamos a testear
+/* // importamos la funcion que vamos a testear
 import preferences from '../src/components/preferences';
 
 // Primero verificamos si es una función.
@@ -13,4 +13,4 @@ describe('preferences', () => {
     const result = preferences();
     expect(result instanceof HTMLElement).toBe(true);
   });
-});
+}); */

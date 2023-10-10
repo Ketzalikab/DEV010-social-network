@@ -9,6 +9,7 @@ const savePost = (userID, icon, post) => {
       userID, icon, post, likes: 0, time: serverTimestamp(),
     },
   );
+  return 'Post creado';
 };
 
 export default savePost;

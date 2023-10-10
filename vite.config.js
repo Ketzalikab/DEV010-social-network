@@ -16,6 +16,7 @@ export default defineConfig(({ command }) => {
       // https://vitejs.dev/guide/static-deploy.html#github-pages
       // ejemplo base: '/social-network/',
       build: {
+        base: '/',
         minify: false,
         rollupOptions: {
           output: {

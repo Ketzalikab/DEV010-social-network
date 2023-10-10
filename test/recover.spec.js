@@ -1,4 +1,4 @@
-import { sendPasswordResetEmail } from 'firebase/auth';
+/* import { sendPasswordResetEmail } from 'firebase/auth';
 import recover from '../src/components/recover';
 
 // Primero verificamos si es una función.

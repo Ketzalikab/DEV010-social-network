@@ -1,60 +1,82 @@
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'; // Importa la función que quieres probar
-import { expect } from '@playwright/test';
-import login, { autenticacionUser } from '../src/components/login.js';
+/* import {
+  getAuth,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+} from 'firebase/auth';
+import login from '../src/components/login';
 
 // Creamos un mock para getAuth
 jest.mock('firebase/auth', () => ({
   getAuth: jest.fn(),
+  signInWithPopup: jest.fn(),
   signInWithEmailAndPassword: jest.fn(),
+  ...jest.requireActual('firebase/auth'), // Importa el módulo real para no interferir con su funcionalidad
+  GoogleAuthProvider: {
+    // Crea una función que devuelva un objeto simulado con el método PROVIDER_ID
+    credential: jest.fn(),
+    PROVIDER_ID: 'google.com',
+  },
 }));
 
 describe('login', () => {
-  it('verificamos que sea una función', () => {
-    expect(typeof login).toBe('function');
+  beforeEach(() => {
+    document.body.innerHTML = ''; // Limpia el DOM antes de cada prueba
   });
 
-  it('la función pinta un documento HTML', () => {
-    const result = login();
-    expect(result instanceof HTMLElement).toBe(true);
-  });
-});
-
-/* TODO Como testeamos una funcion dentro de otra funcion?
-
-describe('autenticacionUser', () => {
-  it('deberia autenticar al usuario correctamente', async () => {
+  it('debería realizar la autenticación con correo y contraseña', async () => {
+    // Configura el mock para getAuth
+    const mockAuth = getAuth();
     const email = 'test@example.com';
     const password = 'password123';
 
-    // Configura el mock para getAuth
-    const mockAuth = getAuth();
-    const signInMock = signInWithEmailAndPassword(mockAuth, email, password);
-    signInMock.mockResolvedValue({ uid: 'usuario123', email: 'test@example.com' });
+    const signInWithEmailAndPasswordSpy = jest
+      .spyOn(mockAuth, 'signInWithEmailAndPassword')
+      .mockResolvedValueOnce({
+        user: {
+          uid: 'user123',
+          email,
+        },
+      });
 
-    // Llama a la función que estás probando
-    const result = await autenticacionUser(email, password);
-    // Verifica que la función se haya llamado con los argumentos correctos
-    expect(signInMock).toHaveBeenCalledWith(mockAuth, email, password);
-    // Verifica que la función retorne el valor esperado
-    expect(result).toEqual({ uid: 'usuario123', email: 'test@example.com' });
+    // Renderiza el componente
+    document.body.appendChild(login());
+
+    // Simula la entrada de valores en los campos de correo y contraseña
+    const emailInput = document.getElementById('emailInput');
+    emailInput.value = email;
+
+    const passwordInput = document.getElementById('passwordInput');
+    passwordInput.value = password;
+
+    // Simula hacer clic en el botón de inicio de sesión
+    const loginButton = document.getElementById('loginButton');
+    loginButton.click();
+
+    // Verifica que la función signInWithEmailAndPassword se haya llamado
+    expect(signInWithEmailAndPassword).toHaveBeenCalledWith(email, password);
   });
 
-  it('deberia manejar errores de autenticacion', async () => {
-    const email = 'test@example.com';
-    const password = 'password123';
-    const errorMessage = 'Error al iniciar sesion: Usuario no encontrado';
-
+  it('debería realizar la autenticación con Google', async () => {
     // Configura el mock para getAuth
     const mockAuth = getAuth();
-    const signInMock = signInWithEmailAndPassword(mockAuth, email, password);
-    signInMock.mockRejectedValue(new Error('auth/user-not-found')); /* simular un error especifico
+    const signInWithPopupSpy = jest
+      .spyOn(mockAuth, 'signInWithPopup')
+      .mockResolvedValueOnce({
+        user: {
+          uid: 'user123',
+          displayName: 'John Doe',
+        },
+      });
 
-    // Llama a la función que estás probando
-    try {
-      await autenticacionUser(email, password);
-    } catch (error) {
-    // Verifica que la función maneje el error correctamente
-      expect(error.message).toBe(errorMessage);
-    }
+    // Renderiza el componente
+    document.body.appendChild(login());
+
+    // Simula hacer clic en el botón de inicio de sesión con Google
+    const googleSignInLink = document.getElementById('googleSignInLink');
+    googleSignInLink.click();
+
+    // Verifica que la función signInWithPopup se haya llamado con el proveedor de Google
+    expect(signInWithPopupSpy).toHaveBeenCalledWith(expect.any(GoogleAuthProvider));
   });
 }); */

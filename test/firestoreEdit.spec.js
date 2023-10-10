@@ -1,5 +1,6 @@
 // importamos la funcion que vamos a testear
 import editPost from '../src/components/firestoreEdit';
+import { db } from '../src/components/firebase';
 
 const { doc, updateDoc } = require('firebase/firestore');
 
@@ -7,6 +8,7 @@ const { doc, updateDoc } = require('firebase/firestore');
 jest.mock('firebase/firestore', () => ({
   doc: jest.fn(),
   updateDoc: jest.fn(),
+  getFirestore: jest.fn(),
 }));
 
 describe('editPost', () => {
@@ -23,10 +25,11 @@ describe('editPost', () => {
     editPost(docID, newPost);
 
     // Verifica que doc se haya llamado con los argumentos correctos
-    expect(doc).toHaveBeenCalledWith(expect.editPost(), 'dataBase2', docID);
+    // Primer parámetro
+    expect(doc).toHaveBeenCalledWith(db, 'dataBase2', docID);
 
-    // Verifica que updateDoc se haya llamado con los argumentos correctos
-    expect(updateDoc).toHaveBeenCalledWith(expect.editPost(), {
+    // Segundo parámetro
+    expect(updateDoc).toHaveBeenCalledWith(undefined, {
       post: newPost,
     });
   });

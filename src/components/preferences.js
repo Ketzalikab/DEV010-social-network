@@ -2,6 +2,10 @@ import { getAuth } from 'firebase/auth';
 import {
   getFirestore, collection, doc, setDoc,
 } from 'firebase/firestore';
+import teacher from '../img/teacher.png';
+import books from '../img/books.png';
+import creativity from '../img/creativity.png';
+import inspiration from '../img/inspiration.png';
 
 const userImage = document.createElement('img');
 
@@ -9,22 +13,22 @@ function preferences() {
   const prefer = document.createElement('section');
 
   prefer.innerHTML = `<div id="nameInputDiv">
-    <h2><label for="userName">¿Quién eres?</label></h2>
+    <h2><label for="userName">¿Cómo te llaman?</label></h2>
     <input type="text" id="userName" placeholder="Tu Nombre">
     </div>
     <article id="userType">
       <ul id="pref">
         <li class="liPref"><button id="teacher" value="teacher" class="ask" name="userType" data-image="img/teacher.png">
-          <img src= "img/teacher.png" class="icon">
+          <img src= "${teacher}" class="icon">
           <p class="options"> Soy profesor frente a grupo, quiero aportar y recibir ideas </p></button> </li>
         <li class="liPref"><button id="kidsTeacher" value="kids" class="ask" name="userType" data-image="img/books.png" >
-          <img src= "img/books.png"  class="icon">
+          <img src= "${books}"  class="icon">
           <p class="options">Soy pedagogo, quiero aportar y recibir ideas</li>
         <li class="liPref"><button id="creative" value="creator" class="ask" name="userType" data-image="img/creativity.png">
-          <img src= "img/creativity.png" class="icon">
+          <img src= "${creativity}" class="icon">
           <p class="options">Solo vengo por inspiración</button></li>
         <li class="liPref"><button id="artist" value="artist" class="ask" name="userType" data-image="img/inspiration.png"> 
-          <img src= "img/inspiration.png" class="icon">
+          <img src= "${inspiration}"" class="icon">
           <p class="options">Soy arte educador/mediador, quiero aportar y recibir ideas</button></li>
       </ul>
     </article>
